@@ -9,7 +9,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.lang.reflect.Type;
 import java.net.Socket;
+import java.util.List;
 
 public class UserClient implements UserModel {
 
@@ -30,6 +32,16 @@ public class UserClient implements UserModel {
     }
 
 
+    @Override
+    public List<User> getAllUsers() throws IOException {
+        out.println("get users");
+        String usersAsJson = in.readLine();
+        // This parses your JSON
+        User[] usersFound = new Gson().fromJson(usersAsJson, User[].class);
+
+
+        return List.of(usersFound);
+    }
 
     @Override
     public void addUser(User user) {

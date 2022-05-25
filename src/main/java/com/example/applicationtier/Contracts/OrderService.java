@@ -1,4 +1,4 @@
-package com.example.applicationtier.services;
+package com.example.applicationtier.Contracts;
 
 import com.example.applicationtier.models.Order;
 

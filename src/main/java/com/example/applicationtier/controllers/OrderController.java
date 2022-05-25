@@ -1,8 +1,7 @@
 package com.example.applicationtier.controllers;
 
 import com.example.applicationtier.models.Order;
-import com.example.applicationtier.models.User;
-import com.example.applicationtier.services.OrderService;
+import com.example.applicationtier.Contracts.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

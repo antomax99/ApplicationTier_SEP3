@@ -1,14 +1,14 @@
 package com.example.applicationtier.controllers;
 
 import com.example.applicationtier.models.User;
-import com.example.applicationtier.services.UserService;
-import jdk.swing.interop.SwingInterOpUtils;
+import com.example.applicationtier.Contracts.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -16,12 +16,24 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public ResponseEntity<List<Object>> getAllUsers() throws IOException {
+        System.out.println("GETTING USERS ON CONTROLLER");
+        List<User> users = userService.getAllUsers();
+        return new ResponseEntity(users, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
     public ResponseEntity addUser(@RequestBody User user)
     {
         System.out.println("SAVING USER ON CONTROLLER");
-        userService.addUser(user);
-        return new ResponseEntity("user created", HttpStatus.OK);
+
+        if (checkUser(user)){
+            userService.addUser(user);
+            return new ResponseEntity(HttpStatus.OK);
+        }else{
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
@@ -33,11 +45,15 @@ public class UserController {
     @RequestMapping(value = "/users/update", method = RequestMethod.PUT)
     public ResponseEntity updateUser(@RequestBody User user)
     {
-        userService.updateUser(user);
-        return new ResponseEntity("user update successful", HttpStatus.OK);
+        if (checkUser(user)){
+            userService.updateUser(user);
+            return new ResponseEntity("user update successful", HttpStatus.OK);
+        }else{
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/users/{id}/delete", method = RequestMethod.DELETE)
     public ResponseEntity deleteUserById(@PathVariable int id)
     {
         userService.deleteUserById(id);
@@ -49,5 +65,22 @@ public class UserController {
         User user = userService.getUserByUsername(username);
         System.out.println(user.toString());
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    private boolean checkUser(User user){
+         boolean toReturn=true;
+        if(user.getUserName()==null)
+            toReturn=false;
+        if(user.getPassword()==null)
+            toReturn=false;
+        if(user.getFirstName()==null)
+            toReturn=false;
+        if(user.getLastName()==null)
+            toReturn=false;
+        if(user.getEmail()==null)
+            toReturn=false;
+        if(user.getSecurityLevel() == 0)
+            toReturn=false;
+        return toReturn;
     }
 }

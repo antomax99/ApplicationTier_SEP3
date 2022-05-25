@@ -1,5 +1,6 @@
 package com.example.applicationtier.services;
 
+import com.example.applicationtier.Contracts.ProductService;
 import com.example.applicationtier.models.Product;
 import com.example.applicationtier.networking.ProductClient;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     private ProductClient productClient;
 

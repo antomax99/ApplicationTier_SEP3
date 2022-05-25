@@ -1,10 +1,12 @@
 package com.example.applicationtier.services;
 
+import com.example.applicationtier.Contracts.UserService;
 import com.example.applicationtier.models.User;
 import com.example.applicationtier.networking.UserClient;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -13,6 +15,11 @@ public class UserServiceImpl implements UserService {
 
     public UserServiceImpl() throws IOException {
         userClient = new UserClient();
+    }
+
+    @Override
+    public List<User> getAllUsers() throws IOException {
+        return userClient.getAllUsers();
     }
 
     @Override
