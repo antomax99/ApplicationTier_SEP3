@@ -4,9 +4,10 @@ import com.example.applicationtier.entities.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface ProductModel {
-    public ArrayList<Product> getAllProducts();
+    public List<Product> getAllProducts();
     public Product getProductById(int id) throws IOException;
     public void addProduct(Product product);
     public void deleteProductByIdAsync(int id);

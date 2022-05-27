@@ -1,5 +1,6 @@
 package com.example.applicationtier.controllers;
 
+import com.example.applicationtier.entities.Order;
 import com.example.applicationtier.entities.Product;
 import com.example.applicationtier.Contracts.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class ProductController {
@@ -15,6 +17,12 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    public ResponseEntity<List<Object>> getAllOrders() throws IOException {
+        System.out.println("GETTING PRODUCTS ON CONTROLLER");
+        List<Product> products = productService.getAllProducts();
+        return new ResponseEntity(products, HttpStatus.OK);
+    }
     @RequestMapping(value = "/products/add", method = RequestMethod.POST)
     public ResponseEntity addProduct(@RequestBody Product product)
     {

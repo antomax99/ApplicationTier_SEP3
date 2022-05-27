@@ -1,6 +1,7 @@
 package com.example.applicationtier.networking;
 
 import com.example.applicationtier.entities.Product;
+import com.example.applicationtier.entities.User;
 import com.example.applicationtier.models.ProductModel;
 import com.google.gson.Gson;
 
@@ -10,12 +11,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductClient implements ProductModel {
 
     private Socket socket;
     private final String host = "localhost";
-    private final int port = 2912;
+    private final int port = 2913;
 
     private PrintWriter out;
     private BufferedReader in;
@@ -31,8 +33,19 @@ public class ProductClient implements ProductModel {
 
 
     @Override
-    public ArrayList<Product> getAllProducts() {
-        return null;
+    public List<Product> getAllProducts() {
+        out.println("get products");
+        String productsAsJson = null;
+        try {
+            productsAsJson = in.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // This parses your JSON
+        Product[] productsFound = new Gson().fromJson(productsAsJson, Product[].class);
+
+
+        return List.of(productsFound);
     }
 
     @Override
