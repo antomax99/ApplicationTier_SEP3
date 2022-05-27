@@ -1,12 +1,13 @@
 package com.example.applicationtier.services;
 
 import com.example.applicationtier.Contracts.OrderService;
-import com.example.applicationtier.models.Order;
+import com.example.applicationtier.entities.Order;
 import com.example.applicationtier.networking.OrderClient;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -18,8 +19,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public ArrayList<Order> getAllOrders() {
-        return orderClient.getAllOrders();
+    public List<Order> getOrders()  {
+        return orderClient.getOrders();
     }
 
     @Override

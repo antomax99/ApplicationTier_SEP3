@@ -1,6 +1,6 @@
 package com.example.applicationtier.Contracts;
 
-import com.example.applicationtier.models.User;
+import com.example.applicationtier.entities.User;
 
 import java.io.IOException;
 import java.util.List;

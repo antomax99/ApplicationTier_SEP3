@@ -1,5 +1,7 @@
 package com.example.applicationtier.models;
 
+import com.example.applicationtier.entities.User;
+
 import java.io.IOException;
 import java.util.List;
 

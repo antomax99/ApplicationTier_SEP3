@@ -1,7 +1,7 @@
 package com.example.applicationtier.services;
 
 import com.example.applicationtier.Contracts.UserService;
-import com.example.applicationtier.models.User;
+import com.example.applicationtier.entities.User;
 import com.example.applicationtier.networking.UserClient;
 import org.springframework.stereotype.Service;
 

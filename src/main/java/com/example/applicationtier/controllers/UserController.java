@@ -1,6 +1,6 @@
 package com.example.applicationtier.controllers;
 
-import com.example.applicationtier.models.User;
+import com.example.applicationtier.entities.User;
 import com.example.applicationtier.Contracts.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

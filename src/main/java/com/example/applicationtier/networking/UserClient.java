@@ -1,6 +1,6 @@
 package com.example.applicationtier.networking;
 
-import com.example.applicationtier.models.User;
+import com.example.applicationtier.entities.User;
 import com.example.applicationtier.models.UserModel;
 import com.google.gson.Gson;
 
@@ -9,7 +9,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.lang.reflect.Type;
 import java.net.Socket;
 import java.util.List;
 

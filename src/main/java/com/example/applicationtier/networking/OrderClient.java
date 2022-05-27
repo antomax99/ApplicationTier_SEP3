@@ -1,8 +1,8 @@
 package com.example.applicationtier.networking;
 
-import com.example.applicationtier.models.Order;
+import com.example.applicationtier.entities.Order;
+import com.example.applicationtier.entities.User;
 import com.example.applicationtier.models.OrderModel;
-import com.example.applicationtier.models.User;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
@@ -11,12 +11,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderClient implements OrderModel {
 
     private Socket socket;
     private final String host = "localhost";
-    private final int port = 2913;
+    private final int port = 2912;
 
     private PrintWriter out;
     private BufferedReader in;
@@ -31,12 +32,24 @@ public class OrderClient implements OrderModel {
     }
 
     @Override
-    public ArrayList<Order> getAllOrders() {
-        return null;
+    public  List<Order> getOrders() {
+
+        out.println("get orders");
+        String orderAsJson = null;
+        try {
+            orderAsJson = in.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // This parses your JSON
+        Order[] ordersFound = new Gson().fromJson(orderAsJson, Order[].class);
+
+        return List.of(ordersFound);
     }
 
     @Override
     public Order getOrderById(int id) throws IOException {
+        System.out.println("getOrderById");
         out.println("get order by id");
         String idAsJson = gson.toJson(id);
         out.println(idAsJson);

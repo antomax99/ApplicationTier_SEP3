@@ -1,6 +1,6 @@
 package com.example.applicationtier.controllers;
 
-import com.example.applicationtier.models.Product;
+import com.example.applicationtier.entities.Product;
 import com.example.applicationtier.Contracts.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,8 +1,7 @@
 package com.example.applicationtier.networking;
 
-import com.example.applicationtier.models.Product;
+import com.example.applicationtier.entities.Product;
 import com.example.applicationtier.models.ProductModel;
-import com.example.applicationtier.models.User;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;

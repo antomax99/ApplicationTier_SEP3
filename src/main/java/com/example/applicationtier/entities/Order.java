@@ -1,4 +1,4 @@
-package com.example.applicationtier.models;
+package com.example.applicationtier.entities;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.example.applicationtier.Contracts;
 
-import com.example.applicationtier.models.Product;
+import com.example.applicationtier.entities.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
