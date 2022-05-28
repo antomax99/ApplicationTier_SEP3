@@ -30,7 +30,7 @@ public class ProductController {
         return new ResponseEntity("product created", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/id/{id}/product", method = RequestMethod.GET)
     public ResponseEntity<Object> getProductById(@PathVariable int id) throws IOException {
         Product product = productService.getProductById(id);
         return new ResponseEntity<>(product,HttpStatus.OK);
