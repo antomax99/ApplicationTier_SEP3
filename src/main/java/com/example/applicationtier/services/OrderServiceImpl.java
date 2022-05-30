@@ -24,6 +24,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getOrdersFromUser(int userID) throws IOException {
+        return orderClient.getOrdersFromUser(userID);
+    }
+
+    @Override
     public Order getOrderById(int id) throws IOException {
         return orderClient.getOrderById(id);
     }

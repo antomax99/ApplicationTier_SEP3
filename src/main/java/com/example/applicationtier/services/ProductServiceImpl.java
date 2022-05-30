@@ -34,6 +34,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void addProductToOrder(Product product, int orderId) {
+
+    }
+
+    @Override
     public void deleteProductByIdAsync(int id) {
         productClient.deleteProductByIdAsync(id);
     }

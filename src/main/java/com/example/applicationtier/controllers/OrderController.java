@@ -23,12 +23,21 @@ public class OrderController {
         List<Order> orders = orderService.getOrders();
         return new ResponseEntity(orders, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/orders/{userID}/user", method = RequestMethod.GET)
+    public ResponseEntity<List<Object>> getOrdersFromUser(@PathVariable int userID) throws IOException {
+        System.out.println("GETTING ORDERS ON CONTROLLER");
+        List<Order> orders = orderService.getOrdersFromUser(userID);
+        return new ResponseEntity(orders, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/orders/add", method = RequestMethod.POST)
     public ResponseEntity addOrder(@RequestBody Order order)
     {
         orderService.addOrder(order);
         return new ResponseEntity("order created", HttpStatus.OK);
     }
+
 
     @RequestMapping(value = "/orders/{id}", method = RequestMethod.GET)
     public ResponseEntity<Object> getOrderById(@PathVariable int id) throws IOException {

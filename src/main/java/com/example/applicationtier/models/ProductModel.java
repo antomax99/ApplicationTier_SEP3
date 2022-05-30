@@ -10,6 +10,7 @@ public interface ProductModel {
     public List<Product> getAllProducts();
     public Product getProductById(int id) throws IOException;
     public void addProduct(Product product);
+    public void addProductToOrder(Product product, int orderId);
     public void deleteProductByIdAsync(int id);
     public void updateProductAsync(Product product);
 }

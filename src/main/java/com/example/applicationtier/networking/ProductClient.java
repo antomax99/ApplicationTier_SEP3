@@ -66,6 +66,15 @@ public class ProductClient implements ProductModel {
     }
 
     @Override
+    public void addProductToOrder(Product product, int orderId) {
+        out.println("add product");
+        String productAsJson = gson.toJson(product);
+        String idAsJson = gson.toJson(orderId);
+        out.println(productAsJson);
+        out.println(idAsJson);
+    }
+
+    @Override
     public void deleteProductByIdAsync(int id) {
         out.println("delete product by id");
         String idAsJson = gson.toJson(id);

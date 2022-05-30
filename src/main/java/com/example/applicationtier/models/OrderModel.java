@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface OrderModel {
     public List<Order> getOrders();
+    public List<Order> getOrdersFromUser(int userID);
     public Order getOrderById(int id) throws IOException;
     public void addOrder(Order order);
     public void deleteOrderByIdAsync(int id);

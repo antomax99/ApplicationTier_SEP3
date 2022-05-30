@@ -48,6 +48,23 @@ public class OrderClient implements OrderModel {
     }
 
     @Override
+    public List<Order> getOrdersFromUser(int userID) {
+        out.println("get orders from user");
+        String idAsJson = gson.toJson(userID);
+        out.println(idAsJson);
+        String orderAsJson = null;
+        try {
+            orderAsJson = in.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        // This parses your JSON
+        Order[] ordersFound = new Gson().fromJson(orderAsJson, Order[].class);
+
+        return List.of(ordersFound);
+    }
+
+    @Override
     public Order getOrderById(int id) throws IOException {
         System.out.println("getOrderById");
         out.println("get order by id");
