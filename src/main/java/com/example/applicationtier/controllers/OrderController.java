@@ -2,6 +2,7 @@ package com.example.applicationtier.controllers;
 
 import com.example.applicationtier.entities.Order;
 import com.example.applicationtier.Contracts.OrderService;
+import com.example.applicationtier.entities.Product;
 import com.example.applicationtier.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,45 +20,67 @@ public class OrderController {
 
     @RequestMapping(value = "/orders", method = RequestMethod.GET)
     public ResponseEntity<List<Object>> getAllOrders() throws IOException {
-        System.out.println("GETTING ORDERS ON CONTROLLER");
+        System.out.println("getAllOrders ON CONTROLLER");
         List<Order> orders = orderService.getOrders();
-        return new ResponseEntity(orders, HttpStatus.OK);
+        return new ResponseEntity(checkOrderValue(orders), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/orders/{userID}/user", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/retrieveprdocut/user/{userID}", method = RequestMethod.GET)
     public ResponseEntity<List<Object>> getOrdersFromUser(@PathVariable int userID) throws IOException {
-        System.out.println("GETTING ORDERS ON CONTROLLER");
+        System.out.println("getOrdersFromUser ON CONTROLLER");
         List<Order> orders = orderService.getOrdersFromUser(userID);
-        return new ResponseEntity(orders, HttpStatus.OK);
+        return new ResponseEntity(checkOrderValue(orders), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/orders/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/order/add", method = RequestMethod.POST)
     public ResponseEntity addOrder(@RequestBody Order order)
     {
-        orderService.addOrder(order);
-        return new ResponseEntity("order created", HttpStatus.OK);
+        orderService.addOrder(checkOrderValue(order));
+        return new ResponseEntity( HttpStatus.OK);
     }
 
 
-    @RequestMapping(value = "/orders/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/order/{id}/retrieve", method = RequestMethod.GET)
     public ResponseEntity<Object> getOrderById(@PathVariable int id) throws IOException {
         Order order = orderService.getOrderById(id);
-        return new ResponseEntity<>(order,HttpStatus.OK);
+        return new ResponseEntity<>(checkOrderValue(order),HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/orders/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/order/update", method = RequestMethod.PUT)
     public ResponseEntity updateOrder(@RequestBody Order order)
     {
-        orderService.updateOrderAsync(order);
+        orderService.updateOrderAsync(checkOrderValue(order));
         return new ResponseEntity("order update successful", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/orders/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/order/{id}/delete", method = RequestMethod.DELETE)
     public ResponseEntity deleteOrderById(@PathVariable int id)
     {
         orderService.deleteOrderByIdAsync(id);
         return new ResponseEntity("deleted order successful",HttpStatus.OK);
     }
 
+ private Order checkOrderValue(Order order){
+     double newValue=0;
 
+     if (order.getProducts()!=null)
+        for(Product product: order.getProducts()) newValue += product.getValue();
+     else
+    System.out.println("Order has no products");
+
+     order.setPrice(newValue);
+        return order;
+ }
+    private List<Order> checkOrderValue(List<Order> orders){
+
+        for(Order order: orders){
+            double newValue=0;
+            if (order.getProducts()!=null)
+                for(Product product: order.getProducts()) newValue += product.getValue();
+            else
+                System.out.println("Order has no products");
+            order.setPrice(newValue);
+        }
+        return orders;
+    }
 }

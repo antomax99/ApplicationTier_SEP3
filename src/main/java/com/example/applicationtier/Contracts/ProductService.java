@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ProductService {
-    public List<Product> getAllProducts();
-    public Product getProductById(int id) throws IOException;
-    public void addProduct(Product product);
-    public void addProductToOrder(Product product, int orderId);
-    public void deleteProductByIdAsync(int id);
-    public void updateProductAsync(Product product);
+     List<Product> getAllProducts();
+     Product getProductById(int id) throws IOException;
+     void addProduct(Product product);
+     void addProductToOrder(Product product, int orderId);
+     void deleteProductByIdAsync(int id);
+     void updateProductAsync(Product product);
 
 }

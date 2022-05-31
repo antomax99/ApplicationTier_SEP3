@@ -23,10 +23,10 @@ public class UserController {
         return new ResponseEntity(users, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/users/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/add", method = RequestMethod.POST)
     public ResponseEntity addUser(@RequestBody User user)
     {
-        System.out.println("SAVING USER ON CONTROLLER");
+        System.out.println("addUser ON CONTROLLER");
 
         if (checkUser(user)){
             userService.addUser(user);
@@ -36,13 +36,13 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/{id}/retrieve", method = RequestMethod.GET)
     public ResponseEntity<Object> getUserById(@PathVariable int id) throws IOException {
         User user = userService.getUserById(id);
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/users/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/user/update", method = RequestMethod.PUT)
     public ResponseEntity updateUser(@RequestBody User user)
     {
         if (checkUser(user)){
@@ -53,7 +53,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/users/{id}/delete", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user/{id}/delete", method = RequestMethod.DELETE)
     public ResponseEntity deleteUserById(@PathVariable int id)
     {
         userService.deleteUserById(id);

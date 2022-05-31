@@ -18,7 +18,7 @@ public class Address implements Serializable {
         this.secondLine = secondLine;
         this.city = city;
         this.zipCode = zipCode;
-        // userID = 0;
+
     }
 
     public String getFirstLine() {

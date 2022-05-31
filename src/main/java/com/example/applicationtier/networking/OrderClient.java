@@ -41,7 +41,7 @@ public class OrderClient implements OrderModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // This parses your JSON
+
         Order[] ordersFound = new Gson().fromJson(orderAsJson, Order[].class);
 
         return List.of(ordersFound);

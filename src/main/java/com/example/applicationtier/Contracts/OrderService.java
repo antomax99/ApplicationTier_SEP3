@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface OrderService {
-    public List<Order> getOrders() throws IOException;
-    public List<Order> getOrdersFromUser(int userID) throws IOException;
-    public Order getOrderById(int id) throws IOException;
-    public void addOrder(Order order);
-    public void deleteOrderByIdAsync(int id);
-    public void updateOrderAsync(Order order);
+    List<Order> getOrders() throws IOException;
+    List<Order> getOrdersFromUser(int userID) throws IOException;
+    Order getOrderById(int id) throws IOException;
+    void addOrder(Order order);
+    void deleteOrderByIdAsync(int id);
+    void updateOrderAsync(Order order);
 }
