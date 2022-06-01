@@ -41,7 +41,7 @@ public class ProductClient implements ProductModel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        // This parses your JSON
+
         Product[] productsFound = new Gson().fromJson(productsAsJson, Product[].class);
 
 

@@ -35,7 +35,8 @@ public class UserClient implements UserModel {
     public List<User> getAllUsers() throws IOException {
         out.println("get users");
         String usersAsJson = in.readLine();
-        // This parses your JSON
+
+
         User[] usersFound = new Gson().fromJson(usersAsJson, User[].class);
 
 
