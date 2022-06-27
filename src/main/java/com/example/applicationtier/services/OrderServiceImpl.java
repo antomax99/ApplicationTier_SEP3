@@ -33,9 +33,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order getOrderById(int id) throws IOException {
-        if(id>=1)
-        return orderClient.getOrderById(id);
-        else throw new IllegalArgumentException("getOrdersFromUser was given an invalid ID: "+id);
+        if(id>=1){
+            Order o = orderClient.getOrderById(id);
+            o.checkPrice();
+        return o;
+        }else throw new IllegalArgumentException("getOrdersFromUser was given an invalid ID: "+id);
     }
 
     @Override

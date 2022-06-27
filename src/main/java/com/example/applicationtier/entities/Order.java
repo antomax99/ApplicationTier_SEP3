@@ -108,7 +108,15 @@ public class Order implements Serializable {
     public void setCompleted(boolean completed) {
         isCompleted = completed;
     }
-
+    //Not the same as DataT
+    public void checkPrice( ) {
+        int newValue=0;
+        try{
+            for(Product p : this.products)
+                newValue+=p.getValue();
+        }catch (Exception ignore){}
+        this.price=newValue;
+    }
     @Override
     public String toString() {
         return "Order{" +
